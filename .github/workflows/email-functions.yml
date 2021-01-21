@@ -6,7 +6,7 @@ on:
 env:
   AZURE_WEBAPP_NAME: email-functions
   AZURE_WEBAPP_PACKAGE_PATH: './dist/email-functions'
-  NODE_VERSION: '10.x'
+  NODE_VERSION: '14.x'
 
 jobs:
   build-and-deploy:
