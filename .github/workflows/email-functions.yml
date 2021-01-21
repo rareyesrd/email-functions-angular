@@ -1,10 +1,7 @@
-name: Deploy to Azure
-on:
-  push:
-    branches:
-      - master
+on: [push]
+
 env:
-  AZURE_WEBAPP_NAME: email-functions
+  AZURE_WEBAPP_NAME: send-email-angular
   AZURE_WEBAPP_PACKAGE_PATH: './dist'
   NODE_VERSION: '12.13.0'
 
