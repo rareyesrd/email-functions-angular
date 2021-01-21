@@ -5,7 +5,7 @@ on:
       - master
 env:
   AZURE_WEBAPP_NAME: email-functions
-  AZURE_WEBAPP_PACKAGE_PATH: '../../dist'
+  AZURE_WEBAPP_PACKAGE_PATH: './dist'
   NODE_VERSION: '14.x'
 
 jobs:
