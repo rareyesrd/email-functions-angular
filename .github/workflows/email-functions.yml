@@ -1,24 +1,30 @@
-on: [push]
+on:
+  push:
+    branches:
+      - 'master'
 
 env:
   AZURE_WEBAPP_NAME: send-email-angular
   AZURE_WEBAPP_PACKAGE_PATH: './dist'
-  NODE_VERSION: '12.13.0'
+  NODE_VERSION: '12.x'
 
 jobs:
-  build-and-deploy:
+  build:
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@master
-    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/checkout@v1
+    - name: Use Node 12.x
       uses: actions/setup-node@v1
       with:
         node-version: ${{ env.NODE_VERSION }}
     - name: Install dependencies
-      run: npm install
+      run: npm ci
     - name: Build
-      run: npm run build
+      run: npm run build:ci
+    - name: Test
+      run: npm run test:ci
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with:
