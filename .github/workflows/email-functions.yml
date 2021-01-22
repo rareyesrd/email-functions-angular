@@ -1,10 +1,11 @@
+
+
 on: push
 
 env:
   AZURE_WEBAPP_NAME: send-email-angular
-  AZURE_WEBAPP_PACKAGE_PATH: "dist"
-  NODE_VERSION: "12.x"
-
+  AZURE_WEBAPP_PACKAGE_PATH: '/dist'
+  NODE_VERSION: '12.x'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,9 +30,9 @@ jobs:
       - name: npm install and npm run build
         run: |
           npm i
-          npm run build
-      - name: Push Build to Releases
-        uses: ncipollo/release-action@v1
+          npm run build:prod
+      - name: 'Deploy to Azure WebApp'
+        uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
